@@ -54,7 +54,7 @@
 
             <include layout="@layout/item_post"></include>
 
-
+w
         </LinearLayout>
     </ScrollView>
 

@@ -54,9 +54,7 @@
 
             <include layout="@layout/item_post"></include>
 
-            <include layout="@layout/item_post"></include>
 
-            <include layout="@layout/item_post"></include>
         </LinearLayout>
     </ScrollView>
 

@@ -1,4 +1,4 @@
-package com.example.pagerview;
+package com.example.myapplicationtestviewpager;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -20,48 +20,53 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        ViewPager viewPager = findViewById(R.id.vp_pager);
+
         TabLayout tabLayout = findViewById(R.id.tabs);
-
+         ViewPager viewPager = findViewById(R.id.viewPager);
         List<Fragment>  fragments = new ArrayList<>();
-        fragments.add(new RedFragment());
-        fragments.add(new YellowFragment());
-        fragments.add(new GreenFragment());
+        fragments.add(new Red());
+        fragments.add(new Yellow());
+        fragments.add(new Blue());
 
 
-        MyPagerAdapter myPagerAdapter = new MyPagerAdapter(getSupportFragmentManager() ,fragments);
+        FragmentAdapter myPagerAdapter = new FragmentAdapter(getSupportFragmentManager() ,fragments);
         viewPager.setAdapter(myPagerAdapter);
         tabLayout.setupWithViewPager(viewPager);
-
     }
 
-    private class MyPagerAdapter extends FragmentPagerAdapter{
+    private class FragmentAdapter extends FragmentPagerAdapter {
 
-       // private  Fragment[] arrFragment;
-        private  List<Fragment> list;
-        public MyPagerAdapter(FragmentManager fm,  List<Fragment> arrFragment) {
+        private List<Fragment> lists;
+        public FragmentAdapter(FragmentManager fm, List<Fragment> lists) {
             super(fm);
-            this.list = arrFragment;
+            this.lists = lists;
         }
 
         @Override
         public Fragment getItem(int position) {
-            return list.get(position);
+           return lists.get(position);
         }
 
         @Override
         public int getCount() {
-            return list.size();
+            return lists.size();
         }
 
         @Nullable
         @Override
         public CharSequence getPageTitle(int position) {
             switch (position){
-                case 0: return "RED";
-                case 1: return "YELLOW";
-                case 2: return "BLUE";
-                default: return "";
+                case 0 :
+                    return "RED";
+
+                case 1 :
+                    return "YELLOW";
+
+                case 2 :
+                    return "BLUE";
+
+                default:
+                    return "xx";
             }
         }
     }

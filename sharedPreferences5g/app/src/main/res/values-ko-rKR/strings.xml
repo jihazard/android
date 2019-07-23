@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">sharedPreferences5g</string>
+    <string name="hello_first">첫만남</string>
+    <string name="hello_twice">두번째만남</string>
+</resources>

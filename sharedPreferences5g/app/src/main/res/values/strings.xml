@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">sharedPreferences5g</string>
+    <string name ="hello_first">re hi hi hi</string>
+    <string name ="hello_twice">re hi hi hi twice!</string>
+</resources>

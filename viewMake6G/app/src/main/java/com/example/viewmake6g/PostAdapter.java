@@ -3,6 +3,7 @@ package com.example.viewmake6g;
 import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -12,7 +13,7 @@ import com.example.viewmake6g.view.PostViewHolder;
 
 import java.util.List;
 
-public class PostAdapter extends RecyclerView.Adapter<PostViewHolder> {
+public class PostAdapter extends RecyclerView.Adapter<PostViewHolder>  {
 
     private Context mContext;
     private List<PostItem> lists;
@@ -26,7 +27,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostViewHolder> {
     @Override
     public PostViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
             View baseView = View.inflate(mContext, R.layout.post_item, null);
-            PostViewHolder postViewHolder = new PostViewHolder(baseView);
+            PostViewHolder postViewHolder = new PostViewHolder(baseView, this );
         return postViewHolder;
     }
 
@@ -43,5 +44,9 @@ public class PostAdapter extends RecyclerView.Adapter<PostViewHolder> {
     @Override
     public int getItemCount() {
         return lists.size();
+    }
+
+    public void onClikcked(int postion) {
+        Toast.makeText(mContext, lists.get(postion).getUserName() , Toast.LENGTH_SHORT).show();
     }
 }

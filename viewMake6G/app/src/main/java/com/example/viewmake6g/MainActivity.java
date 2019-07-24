@@ -1,6 +1,7 @@
  package com.example.viewmake6g;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
@@ -29,7 +30,9 @@ import java.util.List;
             lists.add(postItem);
         }
 
-
+        PostAdapter adapter = new PostAdapter(this,lists);
+        recycleListView.setLayoutManager(new LinearLayoutManager(this,RecyclerView.VERTICAL,false));
+        recycleListView.setAdapter(adapter);
 
 //        for (PostItem post : lists){
 //            View v = View.inflate(this, R.layout.post_item, null);

@@ -1,6 +1,8 @@
 package com.example.recycleviewex_02;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.view.View;
@@ -8,6 +10,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.recycleviewex_02.model.PostItem;
+import com.example.recycleviewex_02.recycleView.PostAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         List<PostItem> items = new ArrayList<>();
-        LinearLayout linearLayout = findViewById(R.id.ll_scroll);
+        RecyclerView recyclerView = findViewById(R.id.recycleView);
 
         for (int i = 0; i < 15 ; i++) {
             PostItem list = new PostItem().builder()
@@ -35,20 +38,9 @@ public class MainActivity extends AppCompatActivity {
             items.add(list);
         }
 
-        for (PostItem item : items){
-            View v = View.inflate(this, R.layout.post_item, null);
-
-            TextView tvUserName = v.findViewById(R.id.tv_username);
-            TextView tvPostText = v.findViewById(R.id.tv_posttext);
-
-            tvUserName.setText(tvUserName.getText());
-            tvPostText.setText(tvPostText.getText());
-
-
-            linearLayout.addView(v);
-        }
-
-
+        PostAdapter postAdapter = new PostAdapter(this, items);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this,RecyclerView.VERTICAL,false));
+        recyclerView.setAdapter(postAdapter);
 
     }
 }

@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
@@ -61,6 +62,8 @@ public class MainActivity extends AppCompatActivity {
         protected void onProgressUpdate(Integer... values) {
             super.onProgressUpdate(values);
             tvDisplay.setText(values[0] +"  Percent");
+            Log.d("startAsyncCal", "onProgressUpdate() called with: values = [" + values[0] + "]");
+
         }
 
         @Override

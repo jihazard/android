@@ -1,23 +1,69 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="horizontal" android:layout_width="match_parent"
+    android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-    <TextView
+    <ImageView
+        android:background="#A6DADA"
+        android:id="@+id/iv_imgView"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        />
 
-        android:layout_marginVertical="10dp"
-        android:textColor="#ff0000"
-        android:text="yoonjh238"
-        android:id="@+id/tv_username"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+    <RelativeLayout
+        android:padding="8dp"
+        android:paddingBottom="8dp"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
+    <ImageView
+            android:id="@+id/iv_likeImg"
+            android:background="#E05151"
+            android:layout_width="24dp"
+            android:layout_height="24dp" />
     <TextView
-        android:layout_marginVertical="10dp"
-        android:text="안녕하세요"
-        android:layout_marginLeft="8dp"
-        android:id="@+id/tv_posttext"
+            android:paddingLeft="16dp"
+            android:id="@+id/iv_likeCount"
+            android:text="2000"
+            android:layout_toRightOf="@id/iv_likeImg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <ImageView
+            android:id="@+id/iv_share"
+            android:layout_alignParentRight="true"
+            android:background="#E05151"
+            android:layout_width="24dp"
+            android:layout_height="24dp" />
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content">
+
+
+        <TextView
+
+            android:layout_marginVertical="10dp"
+            android:textColor="#ff0000"
+            android:text="yoonjh238"
+            android:id="@+id/tv_username"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:layout_marginVertical="10dp"
+            android:text="안녕하세요"
+            android:layout_marginLeft="8dp"
+            android:id="@+id/tv_posttext"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+
+    </LinearLayout>
 
 </LinearLayout>

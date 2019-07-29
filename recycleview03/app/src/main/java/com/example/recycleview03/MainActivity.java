@@ -1,6 +1,7 @@
 package com.example.recycleview03;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.view.View;
@@ -20,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        LinearLayout linearLayout = findViewById(R.id.ll_scroll);
+        RecyclerView recyclerView = findViewById(R.id.recycleView);
 
         List<PostItem> items = new ArrayList<>();
         for (int i = 0; i < 15 ; i++) {
@@ -35,15 +36,6 @@ public class MainActivity extends AppCompatActivity {
         items.add(item);
         }
 
-        for(PostItem item : items){
-            View v = View.inflate(this, R.layout.post_item, null);
-            TextView postText = v.findViewById(R.id.tv_posttext);
-            TextView userName = v.findViewById(R.id.tv_username);
 
-            postText.setText(postText.getText());
-            userName.setText(userName.getText());
-
-            linearLayout.addView(v);
-        }
     }
 }

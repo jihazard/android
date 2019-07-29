@@ -20,14 +20,20 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <ImageView
-            android:background="#ff0000"
-            android:id="@+id/iv_like"
-            android:layout_width="24dp"
-            android:layout_height="24dp" />
+        <CheckBox
+            android:button="@drawable/btn_add2"
+            android:id="@+id/cb_like"
+            android:layout_centerVertical="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <!--<ImageView-->
+            <!--android:background="#ff0000"-->
+            <!--android:id="@+id/iv_like"-->
+            <!--android:layout_width="24dp"-->
+            <!--android:layout_height="24dp" />-->
 
         <TextView
-            android:layout_toRightOf="@+id/iv_like"
+            android:layout_toRightOf="@+id/cb_like"
             android:layout_marginLeft="8dp"
             android:id="@+id/iv_count"
             android:layout_centerVertical="true"

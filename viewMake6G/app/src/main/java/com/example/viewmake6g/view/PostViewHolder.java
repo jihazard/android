@@ -1,6 +1,7 @@
 package com.example.viewmake6g.view;
 
 import android.view.View;
+import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -14,11 +15,12 @@ public class PostViewHolder extends RecyclerView.ViewHolder implements View.OnCl
     public ImageView ivImg, ivLike,ivShare;
     public TextView tvLikeCount, tvUserName, tvPostText;
     public PostAdapter postAdapter;
+    public CheckBox cbLike;
 
     public PostViewHolder(@NonNull View itemView , PostAdapter postAdapter) {
         super(itemView);
         ivImg = itemView.findViewById(R.id.iv_img);
-        ivLike = itemView.findViewById(R.id.iv_like);
+        cbLike = itemView.findViewById(R.id.cb_like);
         ivShare = itemView.findViewById(R.id.iv_share);
         tvLikeCount = itemView.findViewById(R.id.iv_count);
         tvUserName = itemView.findViewById(R.id.tv_UserName);
@@ -31,7 +33,7 @@ public class PostViewHolder extends RecyclerView.ViewHolder implements View.OnCl
     public void onClick(View view) {
         int position = getAdapterPosition();
         switch (view.getId()){
-            case R.id.iv_like:
+            case R.id.cb_like:
                 postAdapter.onClikcked(position);
             case R.id.iv_share:
                 break;

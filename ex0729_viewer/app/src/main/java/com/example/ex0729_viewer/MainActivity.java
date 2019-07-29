@@ -23,10 +23,16 @@ public class MainActivity extends AppCompatActivity {
             List<PostItem> items = new ArrayList<>();
 
             for (int i = 0; i < 15; i++) {
+
+                String url = "";
+                if(i % 2 == 0) url = "http://file3.instiz.net/data/file3/2019/07/21/d/e/1/de13e93a7015cbc04d6c73635c5dea6e.jpg";
+                else  url = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTQfeEiebccCvamOSlqIZrTb3TuP2boFTLFMOi5CTzi7PnvNoX8";
+
+
                 PostItem item = new PostItem().builder()
                         .userName("yoonjh238")
                         .postText("안녕하세요")
-                        .imgUrl("www.naver.com")
+                        .imgUrl(url)
                         .isLike(true)
                         .likeCount(i).build();
 

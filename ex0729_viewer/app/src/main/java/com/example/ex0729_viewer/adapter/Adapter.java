@@ -8,6 +8,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.ex0729_viewer.R;
 import com.example.ex0729_viewer.model.PostItem;
 
@@ -41,6 +42,10 @@ public class Adapter extends RecyclerView.Adapter<PostItemViewHolder> {
         holder.tvPostText.setText(item.getPostText());
         holder.tvLikeCount.setText(String.valueOf(item.getLikeCount()));
 
+        Glide.with(context)
+                .load(item.getImgUrl())
+                .centerCrop()
+                .into(holder.ivImg);
     }
 
     @Override

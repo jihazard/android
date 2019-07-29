@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         PostAdapter postAdapter = new PostAdapter(this, items);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this,RecyclerView.VERTICAL,false));
+        recyclerView.setLayoutManager(new LinearLayoutManager(this,RecyclerView .VERTICAL,false));
         recyclerView.setAdapter(postAdapter);
 
     }

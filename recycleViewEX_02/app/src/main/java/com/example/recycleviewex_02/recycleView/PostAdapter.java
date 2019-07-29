@@ -37,7 +37,7 @@ public class PostAdapter extends RecyclerView.Adapter<AdapterViewHolder> {
 
         holder.tvUserName.setText(item.username);
         holder.tvPostText.setText(item.postText);
-        holder.tvLikeCount.setText(item.postLikeCount);
+        holder.tvLikeCount.setText(String.valueOf(item.postLikeCount));
     }
 
     @Override

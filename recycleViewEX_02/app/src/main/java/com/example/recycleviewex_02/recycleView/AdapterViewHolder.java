@@ -1,18 +1,11 @@
 package com.example.recycleviewex_02.recycleView;
-
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.example.recycleviewex_02.R;
 
-import org.w3c.dom.Text;
-
-import lombok.Getter;
-import lombok.Setter;
 
 public class AdapterViewHolder extends RecyclerView.ViewHolder {
 

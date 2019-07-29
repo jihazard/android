@@ -3,6 +3,7 @@ package com.example.ex0729_viewer.adapter;
 import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -27,7 +28,7 @@ public class Adapter extends RecyclerView.Adapter<PostItemViewHolder> {
     public PostItemViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
         View v = View.inflate(context, R.layout.post_item, null);
-        PostItemViewHolder view = new PostItemViewHolder(v);
+        PostItemViewHolder view = new PostItemViewHolder(v,this);
 
         return view;
     }
@@ -45,5 +46,11 @@ public class Adapter extends RecyclerView.Adapter<PostItemViewHolder> {
     @Override
     public int getItemCount() {
         return postItems.size();
+    }
+
+    public void onLikeCliked(int position, int ids) {
+
+        String select = ids == R.id.iv_likeView ? "좋아요" : "쉐어";
+        Toast.makeText(context, select +"//"+position +"번호를 클릭했습니다.", Toast.LENGTH_SHORT).show();
     }
 }

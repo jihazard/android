@@ -36,9 +36,6 @@ public class MainActivity extends AppCompatActivity {
             rv.setAdapter(new Adapter(this,items));
 
 
-            for (PostItem item : items){
-                System.out.println(item.toString());
-            }
     }
 
 }

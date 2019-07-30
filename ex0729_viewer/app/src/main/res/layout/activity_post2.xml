@@ -24,7 +24,7 @@
             android:layout_alignBottom="@+id/iv_postx"
             android:id="@+id/et"
             android:layout_width="match_parent"
-            android:layout_height="30dp" />
+            android:layout_height="50dp" />
         <Button
             android:layout_alignBottom="@+id/et"
             android:id="@+id/btn_back"

@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.Activity;
+import android.app.PendingIntent;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
@@ -55,6 +56,7 @@ public class MainActivity extends AppCompatActivity {
                 Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
                 if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
                     startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
+
                 }
             }
         });
@@ -68,9 +70,16 @@ public class MainActivity extends AppCompatActivity {
         if(requestCode == 1 && resultCode == Activity.RESULT_OK){
             Bundle extras = data.getExtras();
             Log.d("onActivityResult" , " camera sucees ss " + resultCode +"//" + requestCode);
-            Bitmap imageBitmap = (Bitmap) extras.get("data");
-            ImageView imageView = null;
-            imageView.setImageBitmap(imageBitmap);
+            /*
+            * 데이터 넘겨주기 activity --> postactivity로
+            * */
+
+            Intent startintent = new Intent(this,PostActivity.class);
+            startintent.setData(data.getData());
+            startActivity(startintent);
+ //           Bitmap imageBitmap = (Bitmap) extras.get("data");
+//            ImageView imageView = null;
+//            imageView.setImageBitmap(imageBitmap);
 
 
         }

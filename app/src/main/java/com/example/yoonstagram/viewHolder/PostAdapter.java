@@ -45,7 +45,10 @@ public class PostAdapter extends RecyclerView.Adapter<PostItemViewHolder> {
                 .load(uri)
                 .into(holder.mainImg);
 
-    }
+
+
+
+        }
 
     @Override
     public int getItemCount() {

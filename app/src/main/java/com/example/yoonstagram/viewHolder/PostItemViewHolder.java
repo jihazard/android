@@ -1,5 +1,6 @@
 package com.example.yoonstagram.viewHolder;
 
+import android.content.Intent;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
@@ -29,6 +30,8 @@ public class PostItemViewHolder extends RecyclerView.ViewHolder implements View.
 
         like.setOnClickListener(this);
         share.setOnClickListener(this);
+
+
          }
 
 

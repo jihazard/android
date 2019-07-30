@@ -9,6 +9,7 @@ import android.app.Activity;
 import android.app.PendingIntent;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Log;
@@ -30,11 +31,13 @@ public class MainActivity extends AppCompatActivity {
             RecyclerView rv = findViewById(R.id.view_recycler);
             List<PostItem> items = new ArrayList<>();
 
+
+
             for (int i = 0; i < 15; i++) {
 
                 String url = "";
-                if(i % 2 == 0) url = "http://file3.instiz.net/data/file3/2019/07/21/d/e/1/de13e93a7015cbc04d6c73635c5dea6e.jpg";
-                else  url = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTQfeEiebccCvamOSlqIZrTb3TuP2boFTLFMOi5CTzi7PnvNoX8";
+                if(i % 2 == 0) url = "2";
+                else  url = "1";
 
 
                 PostItem item = new PostItem().builder()
@@ -44,9 +47,29 @@ public class MainActivity extends AppCompatActivity {
                         .isLike(true)
                         .likeCount(i).build();
 
+                Log.d("IMAGEURL", "onCreate: " + url);
+
                 items.add(item);
             }
-            rv.setLayoutManager(new LinearLayoutManager(this,RecyclerView.VERTICAL,false));
+
+        Intent intent = getIntent();
+
+        if(intent.getStringExtra("data")!=null){
+            Log.d("intent", "onCreate() called with: savedInstanceState = [" + intent.getStringExtra("data") + "]");
+            String text = intent.getStringExtra("data");
+            Uri uri =  intent.getData();
+            PostItem item = new PostItem().builder()
+                    .userName(text)
+                    .postText(text)
+                    .imgUrl(uri.toString())
+                    .isLike(true)
+                    .likeCount(1).build();
+            items.add(item);
+
+        }
+
+
+        rv.setLayoutManager(new LinearLayoutManager(this,RecyclerView.VERTICAL,false));
             rv.setAdapter(new Adapter(this,items));
 
         View btn = findViewById(R.id.fab_post);

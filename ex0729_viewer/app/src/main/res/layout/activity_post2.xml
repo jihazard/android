@@ -13,12 +13,26 @@
         android:layout_width="match_parent"
         android:layout_height="300dp" />
 
-
-    <Button
-        android:layout_alignBottom="@+id/iv_postx"
-        android:id="@+id/btn_back"
+    <LinearLayout
+        android:gravity="center"
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="back"
-        />
+        android:layout_height="match_parent"
+        >
+
+        <EditText
+            android:layout_alignBottom="@+id/iv_postx"
+            android:id="@+id/et"
+            android:layout_width="match_parent"
+            android:layout_height="30dp" />
+        <Button
+            android:layout_alignBottom="@+id/et"
+            android:id="@+id/btn_back"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="back"
+            />
+
+    </LinearLayout>
+
 </RelativeLayout>

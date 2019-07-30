@@ -6,20 +6,22 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageView;
 
 public class PostActivity extends AppCompatActivity implements View.OnClickListener {
-
+    EditText et;
+    Uri uri;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_post2);
 
         ImageView iv = findViewById(R.id.iv_postx);
-
+         et = findViewById(R.id.et);
 
         Intent intent = getIntent();
-        Uri uri = intent.getData();
+        uri = intent.getData();
 
         iv.setImageURI(uri);
 //        Bundle extra = getIntent().getExtras();
@@ -34,6 +36,8 @@ public class PostActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View view) {
         Intent intent = new Intent(this,MainActivity.class);
+        intent.putExtra("data", et.getText().toString());
+        intent.setData(uri);
         startActivity(intent);
     }
 }

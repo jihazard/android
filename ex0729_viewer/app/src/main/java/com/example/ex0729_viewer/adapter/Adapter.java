@@ -53,30 +53,13 @@ public class Adapter extends RecyclerView.Adapter<PostItemViewHolder> {
         holder.tvUserName.setText(item.getUserName());
         holder.tvPostText.setText(item.getPostText());
         holder.tvLikeCount.setText(String.valueOf(item.getLikeCount()));
-
-        Log.d("image url 1/2 ", "onBindViewHolder: " + item.getImgUrl());
         String url = "";
-        if(item.getImgUrl().equals("1"))  url = "http://file3.instiz.net/data/file3/2019/07/21/d/e/1/de13e93a7015cbc04d6c73635c5dea6e.jpg";
-        else if(item.getImgUrl().equals("2")) url = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTQfeEiebccCvamOSlqIZrTb3TuP2boFTLFMOi5CTzi7PnvNoX8";
-        else url = item.getImgUrl();
-        Log.d("image url 1/2 ", "onBindViewHolder: " + url);
-        Uri uri =  Uri.parse(url);
-        InputStream in = null;
+        Uri uri =  Uri.parse(item.getImgUrl());
+
         Glide.with(context)
-                .load(url)
+                .load(uri)
                 .centerCrop()
                 .into(holder.ivImg);
-
-
-
-        //   if(i % 2 == 0) url = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTQfeEiebccCvamOSlqIZrTb3TuP2boFTLFMOi5CTzi7PnvNoX8";
-     //   else  url = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTQfeEiebccCvamOSlqIZrTb3TuP2boFTLFMOi5CTzi7PnvNoX8";
-      //  Uri uri =  Uri.parse( item.getImgUrl());
-      //  holder.ivImg.setImageURI(uri);
-//        Glide.with(context)
-//                .load(item.getImgUrl())
-//                .centerCrop()
-//                .into(holder.ivImg);
     }
 
     @Override

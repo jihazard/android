@@ -1,8 +1,5 @@
 package com.example.ex0729_viewer;
 
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.Activity;
 import android.content.ActivityNotFoundException;
 import android.content.DialogInterface;
@@ -10,43 +7,18 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.Toast;
 
-public class PostActivity extends AppCompatActivity implements View.OnClickListener {
-    EditText et;
-    Uri uri;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
 
+public class AndroidBarcodeQrExample extends AppCompatActivity {
     static final String ACTION_SCAN = "com.google.zxing.client.android.SCAN";
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_post2);
-
-        ImageView iv = findViewById(R.id.iv_postx);
-         et = findViewById(R.id.et);
-
-        Intent intent = getIntent();
-        uri = intent.getData();
-
-        iv.setImageURI(uri);
-//        Bundle extra = getIntent().getExtras();
-//        Bitmap imap = (Bitmap) extra.get("data");
-//        iv.setImageBitmap(imap)
-
-        View rid = findViewById(R.id.btn_back);
-        rid.setOnClickListener(this);
-    }
-
-    @Override
-    public void onClick(View view) {
-        Intent intent = new Intent(this,MainActivity.class);
-        intent.putExtra("data", et.getText().toString());
-        intent.setData(uri);
-        startActivity(intent);
     }
 
     //product barcode mode
@@ -58,7 +30,7 @@ public class PostActivity extends AppCompatActivity implements View.OnClickListe
             startActivityForResult(intent, 0);
         } catch (ActivityNotFoundException anfe) {
             //on catch, show the download dialog
-            showDialog(PostActivity.this, "No Scanner Found", "Download a scanner code activity?", "Yes", "No");
+            showDialog(AndroidBarcodeQrExample.this, "No Scanner Found", "Download a scanner code activity?", "Yes", "No");
         }
     }
 
@@ -71,7 +43,7 @@ public class PostActivity extends AppCompatActivity implements View.OnClickListe
             startActivityForResult(intent, 0);
         } catch (ActivityNotFoundException anfe) {
             //on catch, show the download dialog
-            showDialog(PostActivity.this, "No Scanner Found", "Download a scanner code activity?", "Yes", "No").show();
+            showDialog(AndroidBarcodeQrExample.this, "No Scanner Found", "Download a scanner code activity?", "Yes", "No").show();
         }
     }
 
@@ -110,5 +82,5 @@ public class PostActivity extends AppCompatActivity implements View.OnClickListe
             }
         }
     }
-
 }
+

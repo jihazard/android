@@ -33,6 +33,24 @@
             android:text="back"
             />
 
+        <Button
+            android:layout_alignBottom="@+id/btn_back"
+            android:id="@+id/scanner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="scanBar"
+            android:text="barcode Scanning"
+            />
+
+
+        <Button
+            android:layout_alignBottom="@+id/btn_back"
+            android:id="@+id/scanner2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="scanBar"
+            android:text="barcode Scanning2"
+            />
     </LinearLayout>
 
 </RelativeLayout>

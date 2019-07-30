@@ -1,6 +1,8 @@
 package com.example.ex0729_viewer.adapter;
 
 import android.content.Context;
+import android.content.Intent;
+import android.provider.MediaStore;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
@@ -33,6 +35,8 @@ public class Adapter extends RecyclerView.Adapter<PostItemViewHolder> {
 
         return view;
     }
+
+
 
     @Override
     public void onBindViewHolder(@NonNull PostItemViewHolder holder, int position) {

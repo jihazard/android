@@ -9,19 +9,16 @@ import lombok.ToString;
 
 @Getter
 @Setter
-@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-public class PostItem {
-    private String userName;
-    private String postText;
-    private String imgUrl;
-
-    private int likeCount;
-    private boolean isLike;
-
-
-
-
+@Builder
+public class Post {
+    private int id;
+    private String uploader;
+    private String text;
+    private int likes;
+    private String create;
+    private String update;
+    private String image;
 }

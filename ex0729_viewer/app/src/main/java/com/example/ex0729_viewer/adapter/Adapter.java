@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
@@ -15,27 +16,36 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.example.ex0729_viewer.API.Api;
 import com.example.ex0729_viewer.R;
+import com.example.ex0729_viewer.model.Post;
 import com.example.ex0729_viewer.model.PostItem;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
+
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 
 public class Adapter extends RecyclerView.Adapter<PostItemViewHolder> {
     private Context context;
     private List<PostItem> postItems;
+    private List<Post> posts;
     private Bitmap bmp;
 
-    public Adapter(Context context, List<PostItem> postItems) {
+    public Adapter(Context context, List<Post> posts) {
         this.context = context;
-        this.postItems = postItems;
+        this.posts = posts;
     }
 
     @NonNull
     @Override
     public PostItemViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+
 
         View v = View.inflate(context, R.layout.post_item, null);
         PostItemViewHolder view = new PostItemViewHolder(v,this);
@@ -45,16 +55,18 @@ public class Adapter extends RecyclerView.Adapter<PostItemViewHolder> {
 
 
 
+
+
+
     @Override
     public void onBindViewHolder(@NonNull PostItemViewHolder holder, int position) {
 
-
-        PostItem item = postItems.get(position);
-        holder.tvUserName.setText(item.getUserName());
-        holder.tvPostText.setText(item.getPostText());
-        holder.tvLikeCount.setText(String.valueOf(item.getLikeCount()));
+        Post item = posts.get(position);
+        holder.tvUserName.setText(item.getUploader());
+        holder.tvPostText.setText(item.getText());
+        holder.tvLikeCount.setText(String.valueOf(item.getLikes()));
         String url = "";
-        Uri uri =  Uri.parse(item.getImgUrl());
+        Uri uri =  Uri.parse(item.getImage());
 
         Glide.with(context)
                 .load(uri)
@@ -64,7 +76,7 @@ public class Adapter extends RecyclerView.Adapter<PostItemViewHolder> {
 
     @Override
     public int getItemCount() {
-        return postItems.size();
+        return posts.size();
     }
 
     public void onLikeCliked(int position, int ids) {

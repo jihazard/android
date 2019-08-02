@@ -38,15 +38,14 @@ public class Adapter extends RecyclerView.Adapter<PostItemViewHolder> {
     private Bitmap bmp;
 
     public Adapter(Context context, List<Post> posts) {
-        this.context = context;
-        this.posts = posts;
+          this.posts = posts;
     }
 
     @NonNull
     @Override
-    public PostItemViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        public PostItemViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
-
+        this.context = parent.getContext();
         View v = View.inflate(context, R.layout.post_item, null);
         PostItemViewHolder view = new PostItemViewHolder(v,this);
 

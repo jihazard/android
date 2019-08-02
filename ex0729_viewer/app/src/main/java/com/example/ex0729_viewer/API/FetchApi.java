@@ -4,23 +4,13 @@ package com.example.ex0729_viewer.API;
 import android.os.AsyncTask;
 import android.util.Log;
 
-import com.example.ex0729_viewer.adapter.Adapter;
 import com.example.ex0729_viewer.model.Post;
-import com.example.ex0729_viewer.model.PostItem;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
-
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.Reader;
-import java.lang.reflect.Type;
-import java.net.URL;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -29,11 +19,11 @@ import okhttp3.Request;
 import okhttp3.Response;
 import okhttp3.ResponseBody;
 
-public class FetchApi extends AsyncTask<String,Void, String> {
-    List<Post> posts ;
+public class FetchApi extends AsyncTask<String,Void,  List<Post>> {
+
 
     @Override
-    protected  String doInBackground(String... strings) {
+    protected   List<Post> doInBackground(String... strings) {
         try {
             String url = strings[0];
             Log.i("url", "doInBackground: " + url);;
@@ -47,18 +37,23 @@ public class FetchApi extends AsyncTask<String,Void, String> {
                 response = client.newCall(request).execute();
                 ResponseBody body = response.body();
                 String string = body.string();
-                String reader = body.toString();
+
+            /*
+             * JacksonCore
+             * */
+            ObjectMapper mapper = new ObjectMapper();
+            mapper.configure(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY, true);
+            List<Post> convertWebSiteModels = mapper.readValue(string, new TypeReference<List<Post>>(){});
+
+            /*
+             * Gson
+             * */
+            Gson gson = new Gson();
+            Post[] posts1 = gson.fromJson(string, Post[].class);
+            List<Post> posts2 = Arrays.asList(posts1);
 
 
-           // Post[] posts = new Gson().fromJson(reader, Post[].class);
-            Log.i("reader" +"//" , "doInBackground: " +string);
-
-
-
-//            JSONParser parser = new JSONParser();
-//            Object obj = parser.parse( reader );
-//            JSONObject jsonObj = (JSONObject) obj;
-            return string;
+            return posts2;
         } catch (IOException e) {
             e.printStackTrace();
             Log.d("error", "doInBackground: error " + e);
@@ -69,7 +64,7 @@ public class FetchApi extends AsyncTask<String,Void, String> {
 
 
     @Override
-    protected void onPostExecute( String s) {
+    protected void onPostExecute( List<Post> s) {
         super.onPostExecute(s);
         Log.d("json", "onPostExecute: " + s);
 

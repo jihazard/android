@@ -23,9 +23,9 @@ public class CameraActivity extends AppCompatActivity {
         Intent intent = getIntent();
         Uri uri = intent.getData();
         Log.d("uri", "onCreate: " + uri);
-//        Glide.with(this)
-//                .load(uri)
-//                .into(imageview);
+        Glide.with(this)
+                .load(uri)
+                .into(imageview);
 
 
 

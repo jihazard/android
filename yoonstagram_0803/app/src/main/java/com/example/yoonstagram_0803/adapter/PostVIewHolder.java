@@ -13,6 +13,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.yoonstagram_0803.R;
 
+import java.io.IOException;
+
 public class PostVIewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
     public TextView uploader, text , like;
@@ -42,7 +44,11 @@ public class PostVIewHolder extends RecyclerView.ViewHolder implements View.OnCl
         int position = getAdapterPosition();
         switch (view.getId()){
             case R.id.iv_likeimg :
-                postAdapter.clickEvent(position,"like");
+                try {
+                    postAdapter.clickEvent(position,"like");
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
                 break;
         }
     }

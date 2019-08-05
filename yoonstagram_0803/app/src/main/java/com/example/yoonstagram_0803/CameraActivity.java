@@ -203,10 +203,44 @@ public class CameraActivity extends AppCompatActivity {
 
         FileDescriptor fileDescriptor = parcelFileDescriptor.getFileDescriptor();
 
-        Bitmap image = BitmapFactory.decodeFileDescriptor(fileDescriptor);
+        BitmapFactory.Options opt = new BitmapFactory.Options();
+        opt.inJustDecodeBounds = true;
+
+
+        Bitmap image = BitmapFactory.decodeFileDescriptor(fileDescriptor,null,opt);
+        float ratio = getResizedFromOriginalBitmap(opt);
+        opt.inJustDecodeBounds = false;
+        opt.inSampleSize = (int) ratio;
+
+        Bitmap resized = BitmapFactory.decodeFileDescriptor(fileDescriptor,null,opt);
+
         parcelFileDescriptor.close();
 
-        return image;
+        return resized;
+    }
+
+    public float getResizedFromOriginalBitmap( BitmapFactory.Options  opt) {
+
+        int width = opt.outWidth;
+        int height = opt.outHeight;
+
+        int targetWidth = 1280;
+        int targetHeight = 1280;
+
+        float ratio;
+
+        if(width>height){
+            if(width> targetWidth){
+                ratio = (float)width /(float)targetWidth;
+            }else ratio = 1f;
+        }else{
+            if(height > targetHeight){
+                ratio = (float)height /(float)targetHeight;
+            }else ratio =1f;
+        }
+
+
+        return Math.round(ratio);
     }
 
     public File createFileFromBitmap(Bitmap bitmap) throws FileNotFoundException {

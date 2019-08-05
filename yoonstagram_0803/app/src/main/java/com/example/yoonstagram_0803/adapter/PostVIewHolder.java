@@ -1,8 +1,10 @@
 package com.example.yoonstagram_0803.adapter;
 
+import android.graphics.drawable.DrawableContainer;
 import android.view.View;
 import android.widget.Adapter;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -11,14 +13,17 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.yoonstagram_0803.R;
 
-public class PostVIewHolder extends RecyclerView.ViewHolder {
+public class PostVIewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
     public TextView uploader, text , like;
-    public ImageView likeImage, shareImage, postImage;
-    public PostAdapter adapter;
+    public ImageView postImage;
+    public PostAdapter postAdapter;
+    public CheckBox likeImage, shareImage;
+
+
     public PostVIewHolder(@NonNull View itemView, PostAdapter postAdapter) {
         super(itemView);
-        this.adapter= postAdapter;
+        this.postAdapter= postAdapter;
         postImage = itemView.findViewById(R.id.iv_imageview);
         likeImage = itemView.findViewById(R.id.iv_likeimg);
         shareImage = itemView.findViewById(R.id.iv_shareimg);
@@ -27,8 +32,18 @@ public class PostVIewHolder extends RecyclerView.ViewHolder {
         text = itemView.findViewById(R.id.tv_text);
         like = itemView.findViewById(R.id.tv_liketext);
 
-
+        likeImage.setOnClickListener(this);
+        shareImage.setOnClickListener(this);
     }
 
 
+    @Override
+    public void onClick(View view) {
+        int position = getAdapterPosition();
+        switch (view.getId()){
+            case R.id.iv_likeimg :
+                postAdapter.clickEvent(position,"like");
+                break;
+        }
+    }
 }

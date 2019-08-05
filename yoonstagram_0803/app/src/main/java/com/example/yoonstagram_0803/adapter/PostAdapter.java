@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Adapter;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -52,5 +53,10 @@ public class PostAdapter extends RecyclerView.Adapter<PostVIewHolder> {
     @Override
     public int getItemCount() {
         return lists.size();
+    }
+
+    public void clickEvent(int postion, String id){
+        PostItem postItem = lists.get(postion);
+        Toast.makeText(context, postItem.getUploader() +"의 "+postion+" 번째 게시물 클릭", Toast.LENGTH_SHORT).show();
     }
 }

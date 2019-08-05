@@ -17,12 +17,18 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <ImageView
-            android:id="@+id/iv_likeimg"
-            android:background="#ff0000"
-            android:layout_width="24dp"
-            android:layout_height="24dp" />
+        <!--<ImageView-->
+            <!--android:id="@+id/iv_likeimg"-->
+            <!--android:background="#ff0000"-->
+            <!--android:layout_width="24dp"-->
+            <!--android:layout_height="24dp" />-->
 
+        <CheckBox
+            android:button="@drawable/btn_add"
+            android:id="@+id/iv_likeimg"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            />
         <TextView
             android:id="@+id/tv_liketext"
             android:layout_centerVertical="true"
@@ -32,12 +38,19 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
-        <ImageView
+        <!--<ImageView-->
+            <!--android:id="@+id/iv_shareimg"-->
+            <!--android:background="#ff0000"-->
+            <!--android:layout_alignParentRight="true"-->
+            <!--android:layout_width="24dp"-->
+            <!--android:layout_height="24dp" />-->
+        <CheckBox
+            android:button="@drawable/btn_add2"
             android:id="@+id/iv_shareimg"
-            android:background="#ff0000"
             android:layout_alignParentRight="true"
             android:layout_width="24dp"
-            android:layout_height="24dp" />
+            android:layout_height="24dp"
+            />
     </RelativeLayout>
 
     <LinearLayout

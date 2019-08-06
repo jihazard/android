@@ -1,6 +1,7 @@
 package com.example.yoonstagram_0803.adapter;
 
 import android.graphics.drawable.DrawableContainer;
+import android.os.Handler;
 import android.view.View;
 import android.widget.Adapter;
 import android.widget.Button;
@@ -9,13 +10,16 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.lifecycle.ViewModel;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.yoonstagram_0803.R;
 
 import java.io.IOException;
 
-public class PostVIewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+import okhttp3.internal.http2.Http2Reader;
+
+public class PostVIewHolder extends RecyclerView.ViewHolder implements View.OnClickListener  {
 
     public TextView uploader, text , like;
     public ImageView postImage;
@@ -44,12 +48,24 @@ public class PostVIewHolder extends RecyclerView.ViewHolder implements View.OnCl
         int position = getAdapterPosition();
         switch (view.getId()){
             case R.id.iv_likeimg :
-                try {
-                    postAdapter.clickEvent(position,"like");
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-                break;
+
+                    new Handler().postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            try {
+                                postAdapter.clickEvent(getAdapterPosition(),"like");
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+
+                        }
+                    },500);
+
+               break;
         }
     }
+
+
 }
+
+

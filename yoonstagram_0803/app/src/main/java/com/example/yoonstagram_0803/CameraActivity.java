@@ -107,7 +107,8 @@ public class CameraActivity extends AppCompatActivity {
     private void post (String uriString ,String textString) throws ExecutionException, InterruptedException {
 
         postAsync postAsync = new postAsync();
-        Boolean aBoolean = postAsync.execute(uriString, textString).get();
+        //Boolean aBoolean2 = postAsync.execute(uriString, textString).get();
+        postAsync.execute(uriString,textString).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
 
 
     }

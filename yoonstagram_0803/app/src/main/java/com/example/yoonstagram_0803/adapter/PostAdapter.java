@@ -1,6 +1,7 @@
 package com.example.yoonstagram_0803.adapter;
 
 import android.content.Context;
+import android.os.AsyncTask;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;

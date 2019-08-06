@@ -30,13 +30,17 @@ import okhttp3.Response;
 
 public class PostAdapter extends RecyclerView.Adapter<PostVIewHolder> {
     public List<PostItem> lists;
-    public  Context context;
+    public Context context;
+    public RecyclerView rv;
 
-    public PostAdapter( List<PostItem> data) {
-    lists= data;
-    }public PostAdapter(Context context , List<PostItem> data) {
-    lists= data;
-    this.context = context;
+    public PostAdapter(MainActivity mainActivity, List<PostItem> data, RecyclerView rv) {
+        lists = data;
+        this.rv = rv;
+    }
+
+    public PostAdapter(Context context, List<PostItem> data) {
+        lists = data;
+        this.context = context;
     }
 
     @NonNull
@@ -44,7 +48,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostVIewHolder> {
     public PostVIewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         context = parent.getContext();
         View v = View.inflate(context, R.layout.post_item, null);
-        PostVIewHolder pvh = new PostVIewHolder(v,this);
+        PostVIewHolder pvh = new PostVIewHolder(v, this);
         return pvh;
     }
 
@@ -69,9 +73,10 @@ public class PostAdapter extends RecyclerView.Adapter<PostVIewHolder> {
 
     public void clickEvent(int postion, String id) throws IOException {
         PostItem postItem = lists.get(postion);
-        Toast.makeText(context, postItem.getUploader() +"의 "+postion+" 번째 게시물 클릭", Toast.LENGTH_SHORT).show();
+        Toast.makeText(context, postItem.getUploader() + "의 " + postion + " 번째 게시물 클릭", Toast.LENGTH_SHORT).show();
         try {
-            updateLike(postion,postItem.getLikes());
+
+            updateLike(postItem, postion);
         } catch (ExecutionException e) {
             e.printStackTrace();
         } catch (InterruptedException e) {
@@ -80,11 +85,27 @@ public class PostAdapter extends RecyclerView.Adapter<PostVIewHolder> {
     }
 
 
-    public void updateLike(int postion,int like) throws IOException, ExecutionException, InterruptedException {
-        LikeAsync  likeAsync = new LikeAsync();
-        Boolean aBoolean = likeAsync.execute(postion, like).get();
-        if(aBoolean) {
-            Toast.makeText(context, "라이크 추가", Toast.LENGTH_SHORT).show();
+    public void updateLike(PostItem postItem, int postion) throws  ExecutionException, InterruptedException {
+        LikeAsync likeAsync = new LikeAsync();
+
+        Integer like = (Integer) postItem.getLikes();
+        Boolean aBoolean = likeAsync.execute((int) (long) postItem.getId(), like).get();
+        if (aBoolean) {
+
+            postItem.setLikes(postItem.getLikes() + 1);
+            int updateIndex = postion ;
+            lists.set(updateIndex, postItem);
+            this.notifyItemChanged(updateIndex);
+
+        } else {
+            Log.d("태그실패", "updateLike: " + "라이크 추가 실패");
+            Toast.makeText(context, "포스트 삭제", Toast.LENGTH_SHORT).show();
+            lists.remove(postion);
+            this.notifyItemRemoved(postion);
+
+
         }
     }
+
+
 }

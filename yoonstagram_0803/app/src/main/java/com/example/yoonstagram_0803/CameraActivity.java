@@ -340,8 +340,8 @@ public class CameraActivity extends AppCompatActivity {
                 public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                     Log.d("success", "onResponse: " + response.body().toString());
                     Toast.makeText(CameraActivity.this, response.body().toString(), Toast.LENGTH_SHORT).show();
-                }
-            });
+        }
+    });
         } catch (IOException e) {
             e.printStackTrace();
         }

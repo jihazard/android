@@ -24,8 +24,8 @@ public class LikeAsync extends AsyncTask<Integer,Void,Boolean> {
         RequestBody body = new MultipartBody.Builder()
                 .setType(MultipartBody.FORM)
                 .addFormDataPart("action","like")
-                .addFormDataPart("id",String.valueOf(id))
-                .addFormDataPart("like" , String.valueOf(like+1))
+                .addFormDataPart("id", String.valueOf(id))
+                .addFormDataPart("like" , String.valueOf(like + 1))
                 .build();
 
 
@@ -45,8 +45,7 @@ public class LikeAsync extends AsyncTask<Integer,Void,Boolean> {
 
             Log.d("result Code", "updateLike: " + result.body().string());
 
-            if(result.body().string().contains("success")) return true;
-            else return false;
+
 
 
         } catch (IOException e) {
@@ -54,12 +53,19 @@ public class LikeAsync extends AsyncTask<Integer,Void,Boolean> {
 
         }
 
-        return false;
+        return true;
     }
 
     @Override
     protected void onPostExecute(Boolean aBoolean) {
         super.onPostExecute(aBoolean);
 
+        if(aBoolean) {
+            Log.d( " success", "onPostExecute: " + "성공");
+
+        } else {
+            Log.d( " fail", "onPostExecute: " + "실패");
+
+        }
     }
 }

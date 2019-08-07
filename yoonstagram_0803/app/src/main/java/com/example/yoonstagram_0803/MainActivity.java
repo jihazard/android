@@ -52,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
             List<PostItem> data = getData();
 
             rv.setLayoutManager(new LinearLayoutManager(this,RecyclerView.VERTICAL,false));
-            rv.setAdapter(new PostAdapter(this, data));
+            rv.setAdapter(new PostAdapter(this, data,rv));
 
             cameraBtn.setOnClickListener(new View.OnClickListener() {
                 @Override

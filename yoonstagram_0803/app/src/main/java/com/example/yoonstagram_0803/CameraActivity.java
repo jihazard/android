@@ -107,7 +107,8 @@ public class CameraActivity extends AppCompatActivity {
     private void post (String uriString ,String textString) throws ExecutionException, InterruptedException {
 
         postAsync postAsync = new postAsync();
-        Boolean aBoolean = postAsync.execute(uriString, textString).get();
+        //Boolean aBoolean2 = postAsync.execute(uriString, textString).get();
+        postAsync.execute(uriString,textString).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
 
 
     }
@@ -340,8 +341,8 @@ public class CameraActivity extends AppCompatActivity {
                 public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                     Log.d("success", "onResponse: " + response.body().toString());
                     Toast.makeText(CameraActivity.this, response.body().toString(), Toast.LENGTH_SHORT).show();
-                }
-            });
+        }
+    });
         } catch (IOException e) {
             e.printStackTrace();
         }

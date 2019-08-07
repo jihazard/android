@@ -6,6 +6,7 @@ import android.widget.Adapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.ImageView;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -52,4 +53,6 @@ public class PostVIewHolder extends RecyclerView.ViewHolder implements View.OnCl
                 break;
         }
     }
+
+
 }

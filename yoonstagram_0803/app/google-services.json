@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "74972784537",
+    "firebase_url": "https://fir-test-be80b.firebaseio.com",
+    "project_id": "fir-test-be80b",
+    "storage_bucket": "fir-test-be80b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:74972784537:android:6b877b721c9357ec",
+        "android_client_info": {
+          "package_name": "com.example.yoonstagram_0803"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "74972784537-c6h6k7t9nmvi0eup3q49u08uq2gbpaic.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCNAyse2UMPzPyg4Exfd0qQfXL8KIyNRL0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "74972784537-c6h6k7t9nmvi0eup3q49u08uq2gbpaic.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

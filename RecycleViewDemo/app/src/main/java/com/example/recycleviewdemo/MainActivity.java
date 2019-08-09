@@ -16,6 +16,8 @@ import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -34,6 +36,7 @@ public class MainActivity extends AppCompatActivity implements SportAdapter.Call
         prepareDemoContent();
         ButterKnife.bind(this);
         setUp();
+
     }
 
     private void setUp() {
@@ -55,9 +58,10 @@ public class MainActivity extends AppCompatActivity implements SportAdapter.Call
             //prepare data and show loading
          //   CommonUtils.hideLoading();
             List<Sport> mSports = new ArrayList<>();
-            FetchList lists = new FetchList();
+            FetchList lists = new FetchList(this);
             try {
-                mSports = lists.execute(Api.READ_API).get();
+                mSports = lists.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR).get();
+
             } catch (ExecutionException e) {
                 e.printStackTrace();
             } catch (InterruptedException e) {
@@ -66,7 +70,7 @@ public class MainActivity extends AppCompatActivity implements SportAdapter.Call
 
             mSportAdapter.addItems(mSports);
             mRecyclerView.setAdapter(mSportAdapter);
-        }, 1000);
+        }, 3000);
         //CommonUtils.hideLoading();
 
 

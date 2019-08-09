@@ -37,6 +37,9 @@ public class Adapter extends RecyclerView.Adapter<PostItemViewHolder> {
     private List<Post> posts;
     private Bitmap bmp;
 
+    public Adapter(List<Post> posts) {
+          this.posts = posts;
+    }
     public Adapter(Context context, List<Post> posts) {
           this.posts = posts;
     }

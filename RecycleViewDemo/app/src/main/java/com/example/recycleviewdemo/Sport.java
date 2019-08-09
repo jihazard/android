@@ -17,7 +17,7 @@ import lombok.ToString;
 @NoArgsConstructor
 @ToString
 public class Sport {
-
+    @SerializedName("id")
     private int id;
     @SerializedName("imageUrl")
     private String mImageUrl;

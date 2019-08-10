@@ -16,6 +16,7 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.util.Log;
+import android.util.TimingLogger;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -24,6 +25,9 @@ import com.example.yoonstagram_0803.adapter.PostAdapter;
 import com.example.yoonstagram_0803.api.API;
 import com.example.yoonstagram_0803.api.FetchAsync;
 import com.example.yoonstagram_0803.model.PostItem;
+import com.example.yoonstagram_0803.retrofit.Client;
+import com.example.yoonstagram_0803.retrofit.YoonstarInterface;
+import com.example.yoonstagram_0803.util.TimeLog;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.gun0912.tedpermission.PermissionListener;
 import com.gun0912.tedpermission.TedPermission;
@@ -35,24 +39,40 @@ import java.util.Date;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+
 public class MainActivity extends AppCompatActivity {
     Uri uri;
+    RecyclerView rv;
+    List<PostItem> post;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        rv= findViewById(R.id.recycle_view);
 
 
-
-        RecyclerView rv = findViewById(R.id.recycle_view);
         FloatingActionButton cameraBtn = findViewById(R.id.figureBtn);
 
 
         try {
-            List<PostItem> data = getData();
+            long startTime = System.currentTimeMillis();
+            getRetrofitData();
+            long totalTime = System.currentTimeMillis() - startTime;
 
-            rv.setLayoutManager(new LinearLayoutManager(this,RecyclerView.VERTICAL,false));
-            rv.setAdapter(new PostAdapter(this, data,rv));
+            System.out.println("Total time = " + totalTime);
+            System.out.println();
+
+            //rv.setLayoutManager(new LinearLayoutManager(getApplicationContext(),RecyclerView.VERTICAL,false));
+            //rv.setAdapter(new PostAdapter(data));
+
+            //getRetrofitData();
+
+
+
 
             cameraBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -69,6 +89,33 @@ public class MainActivity extends AppCompatActivity {
 
       }
 
+    private List<PostItem> getRetrofitData(){
+        Retrofit retrofit = Client.getRetrofitClient();
+        YoonstarInterface yoonstarInterface = retrofit.create(YoonstarInterface.class);
+        Call<List<PostItem>> list = yoonstarInterface.getList();
+        list.enqueue(new Callback<List<PostItem>>() {
+            @Override
+            public void onResponse(Call<List<PostItem>> call, Response<List<PostItem>> response) {
+
+                long startTime = System.currentTimeMillis();
+                post = response.body();
+                long totalTime = System.currentTimeMillis() - startTime;
+                System.out.println("getRetrofitData Total time = " + totalTime);
+                System.out.println();
+                rv.setLayoutManager(new LinearLayoutManager(getApplicationContext(),RecyclerView.VERTICAL,false));
+                rv.setAdapter(new PostAdapter(post));
+            }
+
+            @Override
+            public void onFailure(Call<List<PostItem>> call, Throwable t) {
+
+            }
+
+
+        });
+        return null;
+
+    }
     private List<PostItem> getData()  {
         FetchAsync fetchAsync = new FetchAsync();
         try {

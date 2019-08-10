@@ -2,6 +2,7 @@ package com.example.yoonstagram_0803.api;
 
 public class API {
     public static  final  String READ_API_URL = "https://script.google.com/macros/s/AKfycbxqog2NIKw1W5_mWgJfWhr0vPT5p3TFnIcrUzrB5WtXXVa0G9I/exec?action=read";
+    public static  final  String READ_FOR_RETROFIT = "https://script.google.com/macros/s/AKfycbxqog2NIKw1W5_mWgJfWhr0vPT5p3TFnIcrUzrB5WtXXVa0G9I/";
     public static  final  String WRITE_API_URL = "https://script.google.com/macros/s/AKfycbxqog2NIKw1W5_mWgJfWhr0vPT5p3TFnIcrUzrB5WtXXVa0G9I/exec";
     public static final String APP_SCRIPT_WEB_APP_URL = "https://script.google.com/macros/s/AKfycbzna0sgwZbmJjR1W2YVw_uC7lHjCyywH16ymIqMk7bSaxoj_BY/exec";
     public static final String ADD_USER_URL = APP_SCRIPT_WEB_APP_URL;

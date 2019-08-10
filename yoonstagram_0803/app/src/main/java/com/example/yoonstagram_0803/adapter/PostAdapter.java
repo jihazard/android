@@ -32,16 +32,10 @@ import okhttp3.Response;
 public class PostAdapter extends RecyclerView.Adapter<PostVIewHolder> {
     public List<PostItem> lists;
     public Context context;
-    public RecyclerView rv;
 
-    public PostAdapter(MainActivity mainActivity, List<PostItem> data, RecyclerView rv) {
+    public PostAdapter(List<PostItem> data) {
         lists = data;
-        this.rv = rv;
-    }
 
-    public PostAdapter(Context context, List<PostItem> data) {
-        lists = data;
-        this.context = context;
     }
 
     @NonNull

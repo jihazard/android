@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity implements SportAdapter.Call
         setContentView(R.layout.activity_main);
         retrofitGetList();
         //        prepareDemoContent();
-//        ButterKnife.bind(this);
+       ButterKnife.bind(this);
        setUp();
 
     }
